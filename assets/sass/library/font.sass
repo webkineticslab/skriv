@@ -1,0 +1,32 @@
+=font-face($name, $source, $types, $weight, $style)
+    @font-face
+        font-family: $name
+        font-weight: $weight
+        font-style: $style
+        $data: ()
+        @for $iterator from 1 through length($types)
+            $type: nth($types, $iterator)
+            $format: false
+            @if $type == "woff"
+                $format: "woff"
+            @else if $type == "otf" or $type == "opentype"
+                $format: "opentype"
+            @else if $type == "ttf" or $type == "truetype"
+                $format: "truetype"
+            @else if $type == "svg"
+                $format: "svg"
+            @else if $type == "eot"
+                $format: "embedded-opentype"
+            $data: append($data, ("#{$source}.#{$type}", $format))
+        $count: length($data)
+        $output: ""
+        @for $iterator from 1 through $count
+            $current: nth($data, $iterator)
+            $url: nth($current, 1)
+            $format: nth($current, 2)
+            $output: $output + url(#{$url})
+            @if $format != false
+                $output: $output + " " + format(#{$format})
+            @if $iterator != $count
+                $output: $output + ", "
+        src: unquote($output)

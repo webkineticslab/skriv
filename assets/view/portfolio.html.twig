@@ -1,0 +1,35 @@
+<div role="main">
+    <div class="tabbox bg-highlight inner">
+        <header>
+            <h1>Portfolio</h1>
+            <small>Get an overview of what I have done</small>
+        </header>
+        <nav class="tabs">
+            <ul>
+                {% for tabId, tab in data %}
+                <li><a data-tab="{{ tabId }}" href="javascript:void(0);">{{ tab.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+    <div class="portfolio inner" role="portfolio">
+        {% set iterator = 0 %}
+        {% for tabId, tab in data %}
+        <ul class="list" data-tab-content="{{ tabId }}"{{ (iterator > 0) ? ' style="display:none"' : '' }}>
+            {% for item in tab.items %}
+                <li>
+                    <a href="/#/portfolio/detail/{{ item.slug }}">
+                        <div class="item">
+                            <img src="{{ item.preview }}">
+                            <div class="overlay">
+                                <h3>{{ item.title }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% set iterator = iterator + 1 %}
+        {% endfor %}
+    </div>
+</div>

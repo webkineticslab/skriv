@@ -1,0 +1,5 @@
+@function join($glue, $list)
+    $output: ""
+    @each $item in $list
+        $output: #{$output}#{$glue}#{$item}
+    @return $output

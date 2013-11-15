@@ -1,0 +1,18 @@
+=animation($definition)
+    -webkit-animation: $definition
+    -moz-animation: $definition
+    -ms-animation: $definition
+    animation: $definition
+
+=keyframes($name)
+    @-webkit-keyframes #{$name}
+        @content
+
+    @-moz-keyframes #{$name}
+        @content
+
+    @-ms-keyframes #{$name}
+        @content
+
+    @keyframes #{$name}
+        @content

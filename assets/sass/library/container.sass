@@ -1,0 +1,15 @@
+=container($totalWidth, $columnCount, $position: false, $prefix: "")
+    $spanWidth: abs($totalWidth / $columnCount)
+    .#{$prefix}container
+        width: $totalWidth
+        @if $position == "center"
+            +block-center
+        @else if $position == "left"
+            +block-left
+        @else if $position == "right"
+            +block-right
+        .row
+            +clearfix
+        @for $number from 1 through $columnCount
+            .span-#{$number}
+                width: $spanWidth * $number

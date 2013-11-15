@@ -1,0 +1,43 @@
+=gradient-horizontal($startColor: #555555, $endColor: #333333)
+    background-color: $endColor
+    background-image: -moz-linear-gradient(left, $startColor, $endColor)
+    background-image: -webkit-gradient(linear, 0 0, 100% 0, from($startColor), to($endColor))
+    background-image: -webkit-linear-gradient(left, $startColor, $endColor)
+    background-image: -o-linear-gradient(left, $startColor, $endColor)
+    background-image: linear-gradient(to right, $startColor, $endColor)
+    background-repeat: repeat-x
+    filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$startColor}', endColorstr='#{$endColor}', GradientType=1)"
+
+=gradient-vertical($startColor: #555555, $endColor: #333333)
+    background-color: mix($startColor, $endColor, 60%)
+    background-image: -moz-linear-gradient(top, $startColor, $endColor)
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($startColor), to($endColor))
+    background-image: -webkit-linear-gradient(top, $startColor, $endColor)
+    background-image: -o-linear-gradient(top, $startColor, $endColor)
+    background-image: linear-gradient(to bottom, $startColor, $endColor)
+    background-repeat: repeat-x
+    filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$startColor}', endColorstr='#{$endColor}', GradientType=0)"
+
+=gradient-directional($startColor: #555555, $endColor: #333333, $deg: 45deg)
+    background-color: $endColor
+    background-repeat: repeat-x
+    background-image: -moz-linear-gradient($deg, $startColor, $endColor)
+    background-image: -webkit-linear-gradient($deg, $startColor, $endColor)
+    background-image: -o-linear-gradient($deg, $startColor, $endColor)
+    background-image: linear-gradient($deg, $startColor, $endColor)
+
+=gradient-radial($innerColor: #555555, $outerColor: #333333)
+    background-color: $outerColor
+    background-image: -webkit-gradient(radial, center center, 0, center center, 460, from($innerColor), to($outerColor))
+    background-image: -webkit-radial-gradient(circle, $innerColor, $outerColor)
+    background-image: -moz-radial-gradient(circle, $innerColor, $outerColor)
+    background-image: -o-radial-gradient(circle, $innerColor, $outerColor)
+    background-repeat: no-repeat
+
+=gradient-striped($color: #555555, $angle: 45deg)
+    background-color: $color
+    background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent))
+    background-image: -webkit-linear-gradient($angle, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)
+    background-image: -moz-linear-gradient($angle, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)
+    background-image: -o-linear-gradient($angle, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)
+    background-image: linear-gradient($angle, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)

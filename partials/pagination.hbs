@@ -1,0 +1,8 @@
+<nav class="pagination clearfix" data-page-count="{{pages}}" role="pagination">
+    <a class="previous{{#if prev}}{{else}} disabled{{/if}}" {{#if prev}}href="{{pageUrl prev}}"{{/if}}>
+        <i class="icon-arrow-left"></i>
+    </a>
+    <a class="next{{#if next}}{{else}} disabled{{/if}}" {{#if next}}href="{{pageUrl next}}"{{/if}}>
+        <i class="icon-arrow-right"></i>
+    </a>
+</nav>

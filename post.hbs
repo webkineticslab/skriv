@@ -1,0 +1,35 @@
+{{!< default}}
+<div class="module-article single inner" role="main">
+    {{#post}}
+        <article class="{{post_class}}">
+            <header>
+                <span class="author image rounded size-50 mr-15 border-highlight block-left">
+                    <img src="{{author.image}}" align="left" width="50">
+                </span>
+                <h2 class="title">
+                    {{title}}
+                </h2>
+                <div class="meta">
+                    <div class="user">
+                        By <a href="mailto:{{author.email}}">{{author}}</a>
+                    </div>
+                </div>
+            </header>
+            <hr>
+            <section class="info">
+                <span class="item">
+                    <i class="fa fa-clock-o"></i> <time datetime="{{date format='YYYY-MM-DD'}}">{{date}}</time>
+                </span>
+                <span class="item">
+                    <i class="fa fa-tags"></i> {{tags}}
+                </span>
+                <span class="ttr item">
+                    <i class="fa fa-eye"></i> <span class="value"></span> minutes
+                </span>
+            </section>
+            <section class="content mt-25">
+                {{content}}
+            </section>
+        </article>
+    {{/post}}
+</div>

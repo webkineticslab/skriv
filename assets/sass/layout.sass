@@ -1,0 +1,433 @@
+@import reset.sass
+@import library.sass
+@import font.sass
+
++kernel
++font-fira
+
+body
+    background: url("/assets/img/bg.png")
+
+@media (-webkit-min-device-pixel-ratio: 2),  (min-resolution: 192dpi)
+    body
+        background: url("/assets/img/bg_@2X.png")
+        background-size: 200px 200px
+
+// SMARTPHONES
+@media screen and (max-width: 480px)
+    +container($responsiveSmartphoneWidth, 10, $containerPosition)
+    .container.main
+        margin-top: $responsiveSmartphoneMarginTop
+        margin-bottom: $responsiveSmartphoneMarginBottom
+
+// TABLETS
+@media screen and (min-width: 768px) and (max-width: 959px)
+    +container($responsiveTabletWidth, 10, $containerPosition)
+    .container.main
+        margin-top: $responsiveTabletMarginTop
+        margin-bottom: $responsiveTabletMarginBottom
+
+// DESKTOP
+@media screen and (min-width: 960px) and (max-width: 1199px)
+    +container($responsiveDesktopWidth, 10, $containerPosition)
+    .container.main
+        margin-top: $responsiveDesktopMarginTop
+        margin-bottom: $responsiveDesktopMarginBottom
+
+// LARGE
+@media screen and (min-width: 1200px)
+    +container($responsiveDesktopLargeWidth, 10, $containerPosition)
+    .container.main
+        margin-top: $responsiveDesktopLargeMarginTop
+        margin-bottom: $responsiveDesktopLargeMarginBottom
+
+html
+    overflow-y: scroll
+
+::-webkit-scrollbar
+    height: 12px
+    width: 12px
+    background: $colorBackground
+
+::-webkit-scrollbar-thumb
+    background: $colorHighlight
+    -webkit-border-radius: 1ex
+
+::-webkit-scrollbar-corner
+    background: #000000
+
+::selection
+    color: #ffffff
+    background: $colorHighlight
+
+a
+    text-decoration: none
+    color: $colorHighlight
+
+.image
+    display: inline-block
+    border: 5px solid $colorHighlight
+    position: relative
+    overflow: hidden
+    @each $current in $imageSizeList
+        &.size-#{$current}
+            width: #{$current}px
+            height: #{$current}px
+    &.border-white
+        border-color: #ffffff
+    &.border-highlight
+        border-highlight: $colorHighlight
+    &.rounded
+        +border-radius(100%)
+
+#header
+    padding: 50px 0 50px 0
+    background: $colorDefault
+
+#navigation
+    +clearfix
+    ul
+        li
+            float: left
+            margin: 0 10px 0 0
+            font-size: $fontSizeSmall
+            &#logo
+                width: $logoContainerWidth
+                height: $logoContainerHeight
+                padding: 0
+                a
+                    padding: 0
+                    background: $logoContainerBackground
+                    img
+                        position: relative
+                        top: ($logoContainerHeight - $logoHeight) / 2
+                        left: ($logoContainerWidth - $logoWidth) / 2
+                        width: $logoWidth
+                        height: $logoHeight
+                        border: 0
+            a
+                +transition(ease 300ms)
+                display: block
+                height: $navigationHeight
+                line-height: $navigationHeight
+                background: rgba(0, 0, 0, 0.2)
+                padding: 0 15px 0 15px
+                &:hover
+                    background: rgba(0, 0, 0, 0.4)
+
+.main
+    border-top: 4px solid $colorHighlight
+
+.pagination
+    color: $paginationColor
+    height: $paginationHeight
+    background: $colorDefault
+    @if $paginationLineHeight
+        line-height: $paginationLineHeight
+    .next, .previous
+        color: $paginationButtonColor
+        width: $paginationButtonWidth
+        height: $paginationButtonHeight
+        background: $paginationButtonBackground
+        @if $paginationButtonBorderTopLeftRadius
+            +border-top-left-radius($paginationButtonBorderTopLeftRadius)
+        @if $paginationButtonBorderTopRightRadius
+            +border-top-right-radius($paginationButtonBorderTopRightRadius)
+        @if $paginationButtonBorderBottomLeftRadius
+            +border-bottom-left-radius($paginationButtonBorderBottomLeftRadius)
+        @if $paginationButtonBorderBottomRightRadius
+            +border-bottom-right-radius($paginationButtonBorderBottomRightRadius)
+        @if $paginationButtonIconTop or $paginationButtonIconLeft
+            [class^="icon-"], [class*=" icon-"]
+                position: relative
+                @if $paginationButtonIconTop
+                    top: $paginationButtonIconTop
+                @if $paginationButtonIconLeft
+                    left: $paginationButtonIconLeft
+        &:hover
+            color: $paginationButtonLinkHoverColor
+        &.disabled
+            opacity: 0.4
+    .previous
+        +block-left
+    .next
+        +block-right
+
+.content
+    background: #ffffff
+    line-height: $lineHeight !important
+    letter-spacing: $letterSpacing !important
+    p
+        margin: 0 0 $lineHeight 0
+        &:last-child
+            margin: 0
+    .inner
+        padding: 40px
+    .highlight
+        background-attachment: fixed
+        background-position: 50% 0px
+        width: 100%
+        &.about
+            background-image: url('/assets/img/bg_1.jpg')
+        &.dark-bg
+            color: rgba(255, 255, 255, 0.4)
+            +transition(300ms ease)
+            &:hover
+                color: #ffffff
+    .module-article
+        &.single
+            article
+                .content
+                    p
+                        &:first-child
+                            font-family: $fontFamilySerif
+        article
+            margin: 0 0 $lineHeight * 2 0
+            position: relative
+            .meta
+                position: relative
+                top: -4px
+                color: $colorBright
+                font-size: $fontSizeDefault
+                .user
+                    font-family: $fontFamilySerif
+            .title
+                color: $colorHighlight
+            hr
+                margin-bottom: 5px
+            .content
+                img
+                    max-width: 100%
+            .info
+                font-size: $fontSizeSmall
+                color: rgba(0, 0, 0, 0.4)
+                &:hover
+                    color: rgba(0, 0, 0, 0.6)
+                .item
+                    margin: 0 20px 0 0
+                    &:hover
+                        color: $colorFontDefault
+                        .fa
+                            color: $colorHighlight
+            &:last-child
+                margin: 0
+
+section.tab
+    +clearfix
+    @extend .pt-50
+    background: $colorLightDarkBg
+    nav
+        @extend .pl-40, .pr-40
+        ul
+            li
+                float: left
+                a
+                    @extend .pl-20, .pr-20, .pt-10, .pb-10
+                    display: block
+                    background: $colorDefault
+
+hr
+    height: 1px
+    color: $colorBright
+    background: $colorBright
+    font-size: 0
+    border: 0
+    margin: $innerTop 0 $innerBottom 0
+    &:last-child
+        margin-bottom: 0
+em, i
+    font-variant: italic
+b, strong
+    font-weight: bold
+u
+    font-style: underline
+blockquote
+    @extend p
+    font-family: $fontFamilySerif
+    border-left: 10px solid $colorHighlight
+    padding: 5px 0 5px 20px
+    font-style: italic
+
+article, .formatted
+    pre
+        background: $colorBackground
+        font-size: $fontSizeSmall
+        border: 1px solid rgba(0, 0, 0, 0.1)
+        padding: $innerTop / 2 $innerLeft / 2 $innerBottom / 2 $innerRight / 2
+        margin: 0 0 $lineHeight 0
+        overflow-x: scroll
+    input
+        border: 1px solid $colorBright
+        padding: 10px
+        font-family: $fontFamilySans
+        font-size: $fontSizeDefault
+    ul
+        list-style-type: circle
+    ol
+        list-style-type: decimal
+    ul, ol
+        margin: 0 0 $lineHeight 20px
+
+#footer
+    height: 40px
+    background: $colorDefault
+    position: relative
+    color: $colorLightDarkBg
+    +transition(ease 200ms)
+    font-size: $fontSizeSmall
+    padding: 40px 0 0 0
+    text-align: center
+    &:hover
+        color: rgba(255, 255, 255, 0.8)
+
+.social
+    width: (30px + 10) * 6
+    left: 50%
+    margin-left: -((30px + 10) * 6) / 2
+    display: block
+    position: absolute
+    top: -14px
+    li
+        float: left
+        margin: 0 5px 0 0
+        a
+            display: block
+            +border-radius(100%)
+            +transition(ease 200ms)
+            color: $colorDefault
+            background: #ffffff
+            width: 30px
+            height: 30px
+            text-align: center
+            border: 2px solid $colorDefault
+            .fa
+                position: relative
+                top: 8px
+            &:hover
+                color: $colorHighlight
+
+.btn
+    display: inline-block
+    padding: 3px 14px 5px 14px
+    background: $colorHighlight
+    color: #ffffff
+    font-size: $fontSizeDefault
+    &.small
+        padding: 3px 10px 3px 10px
+        font-size: $fontSizeSmall
+
+.legal
+    width: 400px
+    margin: 0 auto
+    color: $colorLightDarkBg
+    li
+        float: left
+        color: $colorLightDarkBg
+        padding: 0 15px 0 15px
+        border-right: 1px solid $colorLightDarkBg
+        &:last-child
+            border-right: none
+            padding-right: 0
+        a
+            +transition(ease 200ms)
+            color: $colorLightDarkBg
+            &:hover
+                color: #ffffff
+
+#nprogress
+    pointer-events: none
+    -webkit-pointer-events: none
+    .bar
+        background: $colorHighlight
+        position: fixed
+        z-index: 100
+        top: 0
+        left: 0
+        width: 100%
+        height: 2px
+    .peg
+        -webkit-transform: rotate(3deg) translate(0px, -4px)
+        -moz-transform: rotate(3deg) translate(0px, -4px)
+        -ms-transform: rotate(3deg) translate(0px, -4px)
+        -o-transform: rotate(3deg) translate(0px, -4px)
+        transform: rotate(3deg) translate(0px, -4px)
+        display: block
+        position: absolute
+        right: 0px
+        width: 100px
+        height: 100%
+        box-shadow: 0 0 10px #29d, 0 0 5px #29d
+        opacity: 1.0
+
+.bg-highlight
+    background: $colorHighlight
+    color: #ffffff
+
+.bg-default
+    background: $colorDefault
+    color: #ffffff
+
+.bg-bright
+    background: $colorBright
+
+.tabbox
+    position: relative
+    header
+        +clearfix
+        margin: 0 0 25px 0
+        h1
+            margin-bottom: 5px
+    nav
+        position: absolute
+        bottom: 0px
+        ul
+            margin: 0
+            li
+                float: left
+                margin: 0 10px 0 0
+                a
+                    font-size: $fontSizeSmall
+                    display: block
+                    background: $colorDefault
+                    padding: 4px 10px 4px 10px
+                    color: #ffffff
+                    &.active, &:hover
+                        color: $colorDefault
+                        background: #ffffff
+
+.portfolio
+    &.inner
+        padding-right: 0
+    .list
+        +clearfix
+        list-style-type: none
+        margin: 0
+        padding: 0
+        .item
+            float: left
+            position: relative
+            width: $portfolioItemWidth
+            height: $portfolioItemHeight
+            margin: 0 40px 40px 0
+            img
+                width: $portfolioItemWidth
+                height: $portfolioItemHeight
+            .overlay
+                +transition(ease 200ms)
+                display: none
+                position: absolute
+                top: 0
+                left: 0
+                color: #ffffff
+                width: $portfolioItemWidth
+                height: $portfolioItemHeight
+                background: $colorHighlight
+                opacity: 0.8
+                h3
+                    text-align: center
+                    margin: 115px 0 0 0
+            &:nth-child(3n)
+                margin: 0
+            &:hover
+                .overlay
+                    display: block
