@@ -4,6 +4,9 @@ to the README file of `skriv`. Thank you for trusting me. I am a 26 years old So
 **Let me introduce `skriv`:**
 I love to read. Unfortunatly, most sites on the internet don't know how to set up a reasonable reading experience. So I made my own blog theme. You will love it.
 
+## Preview
+[Open Preview Site](http://skriv.mr-boolean.com/)
+
 ## Features
 - Fulyl Responsive
 - Build with SASS
